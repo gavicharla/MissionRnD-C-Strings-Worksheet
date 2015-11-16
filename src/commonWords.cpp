@@ -16,6 +16,103 @@ NOTES: If there are no common words return NULL.
 
 #define SIZE 31
 
-char ** commonWords(char *str1, char *str2) {
+char ** commonWords(char *a, char *b) {
+	if (a==NULL||b==NULL)
 	return NULL;
+	int i = 0, j = 0, k = 0, count = 0;
+	int x[10][2], y[10][2], first = 0;
+
+	while (a[i] != '\0')
+	{
+		if (a[i] == ' '&&i > 0)
+		{
+			if (a[i - 1] != ' ')
+				x[j++][1] = i - 1;
+		}
+		else if (i == 0 && a[i] != ' ')
+			x[j][0] = i;
+		else if (i > 0 && a[i] != ' ')
+		{
+			if (a[i - 1] == ' ')
+				x[j][0] = i;
+		}
+		i++;
+	}
+	if (a[i - 1] != ' ')
+		x[j++][1] = i - 1;
+	i = 0;
+	while (b[i] != '\0')
+	{
+		if (b[i] == ' '&&i > 0)
+		{
+			if (b[i - 1] != ' ')
+				y[k++][1] = i - 1;
+		}
+		else if (i == 0 && b[i] != ' ')
+			y[k][0] = i;
+		else if (i > 0 && b[i] != ' ')
+		{
+			if (b[i - 1] == ' ')
+				y[k][0] = i;
+		}
+		i++;
+	}
+	if (a[i - 1] != ' ')
+		y[k++][1] = i - 1;
+	int l = 0, m = 0, flag = 0;
+	for (l = 0; l < j; l++)
+
+	{
+		flag = 0;
+		for (m = 0; m < k; m++)
+		{
+			if (a[x[l][0]] == b[y[m][0]])
+			{
+				int temp1 = x[l][0];
+				int temp2 = y[m][0];
+				int temp3 = x[l][1];
+				int temp4 = y[m][1];
+				for (; temp1 <= temp3&&temp2 <= temp4; temp1++, temp2++)
+					if (a[temp1] != b[temp2])
+						break;
+				if (temp1 - 1 != temp3 || temp2 - 1 != temp4)
+					flag++;
+			}
+			else
+				flag++;
+
+		}
+		if (flag < k)
+		{
+			count++;
+		}
+		else
+			x[l][0] = -1;
+	}
+
+	l = 0, m = 0, i = 0, k = 0;
+	char **s = (char **)calloc(j, j * sizeof(char *));
+	for (i = 0; i<j; i++)
+		s[i] = (char *)malloc(32 * sizeof(char));
+	for (i = 0; i < j; i++)
+	{
+		if (x[i][0] != -1)
+		{
+			int temp1 = x[i][0];
+			int temp2 = x[i][1];
+			k = 0;
+			while (temp1 <= temp2)
+			{
+				s[l][k] = a[temp1];
+				k++;
+				temp1++;
+			}
+			s[l][k] = '\0';
+			l++;
+		}
+	}
+
+	if (count>0)
+	return s;
+	else return NULL;
 }
