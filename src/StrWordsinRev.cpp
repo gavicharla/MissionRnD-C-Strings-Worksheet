@@ -31,12 +31,12 @@ void str_words_in_rev(char *input, int len)
 		temp = input[first];
 		input[first] = input[last];
 		input[last] = temp;
-	}
+	}//reversing the string 
 	int count = 0, i = 0, temp1=0;
 
 	while (input[i] != '\0')
 	{
-		if (input[i] == ' ')
+		if (input[i] == ' ')	//when space comes we rever the word corresponding to that space
 		{
 			if (count == 0)
 			{
@@ -53,6 +53,6 @@ void str_words_in_rev(char *input, int len)
 		}
 		i++;
 	}
-	reverse(input, temp1, i - 1);
+	reverse(input, temp1, i - 1);//finally reverse the last spcae
 
 }

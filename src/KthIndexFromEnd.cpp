@@ -14,9 +14,9 @@ NOTES:
 char KthIndexFromEnd(char *str, int K) {
 	if (str==NULL||K<0)
 	return '\0';
-	int ind = 0;
+	int ind=0 ;
 	while (str[ind] != '\0')
 		ind++;
-	return str[ind - K-1];
+	return str[ind - K-1];//getting the length and giving the kth letter 
 
 }

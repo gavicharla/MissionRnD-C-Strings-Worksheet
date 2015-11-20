@@ -17,13 +17,13 @@ char * removeSpaces(char *str) {
 	int i = 0, j = 0,count=0;
 	while (str[i] != '\0')
 	{
-		if (str[i] == ' '&&count==0)
+		if (str[i] == ' '&&count==0)//checking if the first char is a space
 		{
 			j = i;
 			count++;
 			i++;
 		}
-		else if (count > 0&&str[i]!=' ')
+		else if (count > 0&&str[i]!=' ')//if already a space occurs and present char is not a space ..copy it to the old pos
 		{
 			str[j] = str[i];
 			j++;
